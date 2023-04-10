@@ -26,6 +26,13 @@ export default function UserPage() {
       });
   }, [id]);
 
+  function loadCommentsHandler(event) {
+    router.push({
+      pathname: '/users/[id]/[postid]',
+      query: { id: id, postid: event.target.value }
+    })
+  }
+
   return (
     <>
       <h1>This is the page for the user.</h1>
@@ -46,7 +53,8 @@ export default function UserPage() {
               <li key={post.id}>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
-                <Link href={`/users/${id}/${post.id}`}>See Post Comments</Link>
+                {/* <Link href={`/users/${id}/${post.id}`}>See Post Comments</Link> */}
+                <button onClick={loadCommentsHandler} value={post.id}>See Posts Comments</button>
               </li>
             ))}
           </ul>
