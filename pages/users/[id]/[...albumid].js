@@ -5,8 +5,6 @@ export default function PostPage() {
   const router = useRouter();
   const { albumid } = router.query;
 
-  console.log(albumid);
-
   const [photos, setPhotos] = useState(null);
 
   useEffect(() => {
