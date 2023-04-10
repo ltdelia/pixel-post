@@ -6,6 +6,7 @@ export default function UserPage() {
   const { id } = router.query;
 
   const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState(null);
 
   // data fetch here via JSON Placeholder for the relevant user -- router.query.id
   useEffect(() => {
@@ -13,6 +14,14 @@ export default function UserPage() {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users/" + id + "/posts")
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
       });
   }, [id]);
 
@@ -26,6 +35,18 @@ export default function UserPage() {
           <h2>{user.email}</h2>
           <h2>{user.phone}</h2>
           <h2>{user.website}</h2>
+        </div>
+      )}
+      {posts && (
+        <div>
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <h2>{post.title}</h2>
+                <p>{post.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
       {!id && (
