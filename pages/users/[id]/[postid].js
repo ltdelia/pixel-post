@@ -23,7 +23,7 @@ export default function PostPage() {
         <div>
           <ul>
             {comments.map((comment) => (
-              <li>
+              <li key={comment.id}>
                 <h2>{comment.name}</h2>
                 <h3>From: {comment.email}</h3>
                 <p>{comment.body}</p>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -35,15 +36,17 @@ export default function UserPage() {
           <h2>{user.email}</h2>
           <h2>{user.phone}</h2>
           <h2>{user.website}</h2>
+          <Link href={`/users/${id}/2022/10/1`}>See User Photos</Link>
         </div>
       )}
       {posts && (
         <div>
           <ul>
             {posts.map((post) => (
-              <li>
+              <li key={post.id}>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
+                <Link href={`/users/${id}/${post.id}`}>See Post Comments</Link>
               </li>
             ))}
           </ul>
