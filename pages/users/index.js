@@ -18,7 +18,11 @@ export default function UsersLanding() {
       <ul>
         {users && users.map((user) => (
           <li key={user.id}>
-            <Link href={'/users/' + user.id}>{user.name}</Link>
+            {/* <Link href={'/users/' + user.id}>{user.name}</Link> */}
+            <Link href={{
+                pathname: '/users/[id]',
+                query: {id: user.id}
+            }}>{user.name}</Link>
           </li>
         ))}
       </ul>
